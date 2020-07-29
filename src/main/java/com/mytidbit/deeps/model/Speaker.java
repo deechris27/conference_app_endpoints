@@ -1,11 +1,14 @@
 package com.mytidbit.deeps.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity(name = "speakers")
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
 public class Speaker {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,12 +25,7 @@ public class Speaker {
     private byte[] speaker_photo;
 
     @ManyToMany(mappedBy = "speakers")
-    @JoinTable(
-            name = "session_speakers",
-            joinColumns = @JoinColumn(name = "speaker_id"),
-            inverseJoinColumns = @JoinColumn(name = "session_id")
-    )
-
+    @JsonIgnore
     private List<Session> sessions;
 
     public Speaker(){
