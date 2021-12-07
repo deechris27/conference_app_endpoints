@@ -1,5 +1,6 @@
 # Conference booking app
 
+
 ## GET POST DELETE PUT
 
 http://localhost:8080/api/v1/sessions
